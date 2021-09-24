@@ -40,4 +40,14 @@ body{
     height: 20px;
     border-radius: 50%;
     background-color: white;
+    animation: myAnim .3s ease-in-out infinite alternate;
+    animation-play-state: paused ;
+}
+@keyframes myAnim{
+    from{
+        box-shadow: 0px 0px 35px 10px #809b80;
+    }
+    to{
+        box-shadow: 0px 0px 35px -10px #809b80; 
+    }
 }

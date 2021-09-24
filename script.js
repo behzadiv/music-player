@@ -35,6 +35,7 @@ audio.addEventListener("canplay",()=>{
 audio.addEventListener("timeupdate",()=>{
     range.value = audio.currentTime
     if( range.value == Math.floor(range.max)){
+        document.querySelector("#music-cover").style.animationPlayState = "paused"
         document.getElementById("play").classList.replace("fa-pause","fa-play")
          
     }
@@ -45,11 +46,13 @@ range.addEventListener("input",()=>{
 playBtn.addEventListener("click",()=>{
     if(audio.paused){
         audio.play()
+        document.querySelector("#music-cover").style.animationPlayState = "running"
         document.getElementById("play").classList.replace("fa-play","fa-pause")
         range.style
         
     }else{
         audio.pause()
+        document.querySelector("#music-cover").style.animationPlayState = "paused"
         document.getElementById("play").classList.replace("fa-pause","fa-play")
         
     }
@@ -60,6 +63,7 @@ nextBtn.addEventListener("click",()=>{
     audio.pause()
     range.value= 0
     audio.currentTime = range.value
+    document.querySelector("#music-cover").style.animationPlayState = "paused"
     document.getElementById("play").classList.replace("fa-pause","fa-play")
     changeMusic("next")   
 })
@@ -67,6 +71,7 @@ prevBtn.addEventListener("click",()=>{
     audio.pause()
     range.value= 0
     audio.currentTime = range.value
+    document.querySelector("#music-cover").style.animationPlayState = "paused"
     document.getElementById("play").classList.replace("fa-pause","fa-play")
     changeMusic("prev")   
 })
@@ -96,6 +101,7 @@ function changeMusic(state){
     audio.addEventListener("timeupdate",()=>{
     range.value = audio.currentTime
     if( range.value == Math.floor(range.max)){
+        document.querySelector("#music-cover").style.animationPlayState = "paused"
         document.getElementById("play").classList.replace("fa-pause","fa-play")
          
     }
