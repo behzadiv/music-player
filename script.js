@@ -26,6 +26,8 @@ document.querySelector("#music-cover").src = musicCover
 
 let range = document.querySelector("#range")
 let playBtn = document.querySelector("#play")
+let nextBtn = document.querySelector("#next")
+let prevBtn = document.querySelector("#prev")
 
 audio.addEventListener("canplay",()=>{
     range.max = audio.duration
@@ -53,3 +55,49 @@ playBtn.addEventListener("click",()=>{
     }
     
 })
+
+nextBtn.addEventListener("click",()=>{
+    audio.pause()
+    range.value= 0
+    audio.currentTime = range.value
+    document.getElementById("play").classList.replace("fa-pause","fa-play")
+    changeMusic("next")   
+})
+prevBtn.addEventListener("click",()=>{
+    audio.pause()
+    range.value= 0
+    audio.currentTime = range.value
+    document.getElementById("play").classList.replace("fa-pause","fa-play")
+    changeMusic("prev")   
+})
+function changeMusic(state){
+    if(state =="next"){
+        if(currentMusic == musics.length-1){
+            currentMusic = 0
+        }else{
+            currentMusic +=1
+           
+        }
+        
+    }else{
+        if(currentMusic == 0)
+        currentMusic = musics.length-1
+        else currentMusic -=1
+    }
+    audio = musics[currentMusic].audio
+    musicName = musics[currentMusic].name
+    musicCover = musics[currentMusic].cover
+    document.querySelector("#music-title").innerHTML = musicName
+    document.querySelector("#music-cover").src = musicCover
+
+    audio.addEventListener("canplay",()=>{
+        range.max = audio.duration
+    })
+    audio.addEventListener("timeupdate",()=>{
+    range.value = audio.currentTime
+    if( range.value == Math.floor(range.max)){
+        document.getElementById("play").classList.replace("fa-pause","fa-play")
+         
+    }
+})
+}
